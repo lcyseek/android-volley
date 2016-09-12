@@ -61,7 +61,7 @@ public class Response<T> {
     public final T result;
 
     /** Cache metadata for this response, or null in the case of error. */
-    /** request的缓存内容. */
+    /** response的缓存内容. */
     public final Cache.Entry cacheEntry;
 
     /** Detailed error information if <code>errorCode != OK</code>. */

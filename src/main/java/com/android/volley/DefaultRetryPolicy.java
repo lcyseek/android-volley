@@ -94,6 +94,8 @@ public class DefaultRetryPolicy implements RetryPolicy {
     @Override
     public void retry(VolleyError error) throws VolleyError {
         mCurrentRetryCount++;
+        //对于请求失败之后的请求，并不会隔相同的时间去请求Server，不会以线性的时间增长去请求，
+        //而是一个曲线增长，一次比一次长，如果backoff因子是2，当前超时为3，即下次再请求隔6S。
         mCurrentTimeoutMs += (mCurrentTimeoutMs * mBackoffMultiplier);
         if (!hasAttemptRemaining()) {
             throw error;
